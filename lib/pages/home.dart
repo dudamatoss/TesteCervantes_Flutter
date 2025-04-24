@@ -93,7 +93,7 @@ class _InputState extends State<Input> {
 Widget build(BuildContext context) {
   return Scaffold(
     appBar: AppBar(
-      title: Text('Área de Cadastro', style: TextStyle(color: Colors.white)),
+      title: Text('Teste Cervantes - Tela de Cadastro', style: TextStyle(color: Colors.white)),
       centerTitle: true,
       backgroundColor: Color(0xFF1C1C1E),
     ),
