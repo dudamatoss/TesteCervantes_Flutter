@@ -89,16 +89,16 @@ class DatabaseHelper {
   }
 
  //editar um cadastro 
-  Future<int> cadastroEdit(int id, Map<String, dynamic> dadoEdit) async {
+  Future<int> cadastroEdit(int numero, Map<String, dynamic> dadoEdit) async {
     Database db = await _instance.database;
     return await db.update(
       'cadastro',
       dadoEdit,
-      where: 'id_cadastro = ?',
-      whereArgs: [id],
+      where: 'numero = ?',
+      whereArgs: [numero],
     );
   }
-   //Deleta um cadastro já existente
+   //Deleta um cadastro 
   Future<int> cadastroDelete(int numero) async {
     Database db = await _instance.database;
     return await db.delete(
