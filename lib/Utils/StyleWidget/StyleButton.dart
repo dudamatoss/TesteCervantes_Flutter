@@ -24,12 +24,12 @@ class StyleButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         maximumSize: Size(double.infinity, 100),
           backgroundColor:
-               const Color.fromARGB(208, 60, 254, 39), // cor de fundo
+               const Color.fromARGB(130, 62, 255, 41), // cor de fundo
                 elevation: 5, // sem sombra
                 shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10), // bordas arredondadas
     ),
-          foregroundColor:  Colors.black,
+          foregroundColor:  const Color.fromARGB(255, 63, 63, 63),
            textStyle: TextStyle(
       fontSize: 25,
       fontWeight: FontWeight.bold,

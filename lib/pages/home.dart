@@ -58,7 +58,6 @@ class _HomeState extends State<Home> {
       );
     }
   }
-  //metodo de deletar p numero
   void deletar(int index) async {
     final confirm = await showDialog<bool>(
       context: context,
@@ -80,7 +79,7 @@ class _HomeState extends State<Home> {
     );
     if (confirm == true) {
       final numero = cadastros[index]['numero'];
-      // Chama a função do banco deletar
+
       final rowDelet = await databHelper.cadastroDelete(numero);
       ExibirMsg(context, "Cadastro deletado com sucesso");
       carregarCadastros();
@@ -91,7 +90,6 @@ class _HomeState extends State<Home> {
       }
     }
   }
-  //metodo de editar
   void editar() async {
   final texto = textController.text;
   final novoNum = int.tryParse(numController.text);
@@ -116,7 +114,6 @@ class _HomeState extends State<Home> {
       );
     }
 }
-  //preenche o input na hora da ediação
   void inputEdicao(Map<String, dynamic> cadastro) {
     setState(() {
       textController.text = cadastro['texto'];
@@ -124,7 +121,6 @@ class _HomeState extends State<Home> {
       numEditar = cadastro['numero'];
     });
   }
-  //verifica se o valor do campo é um número válido
   int? _verificaNum(String numInput) {
     if (numInput.isEmpty) {
       return null;
@@ -135,7 +131,6 @@ class _HomeState extends State<Home> {
     }
     return verificaNum;
   }
-  //exibe uma mensagem na tela quando os dados são carregados
   void ExibirMsg(BuildContext context, String message, {bool isError = false}) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -148,7 +143,6 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-  //input de casatro texto e numeros
   @override
   Widget build(BuildContext context) {
     return Scaffold(
