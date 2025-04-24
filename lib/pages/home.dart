@@ -58,7 +58,7 @@ class _HomeState extends State<Home> {
       );
     }
   }
-  //metodo de deletar pou numero
+  //metodo de deletar p numero
   void deletar(int index) async {
     final confirm = await showDialog<bool>(
       context: context,
@@ -144,7 +144,7 @@ class _HomeState extends State<Home> {
             isError
                 ? const Color.fromARGB(121, 0, 0, 0)
                 : const Color.fromARGB(183, 4, 94, 10),
-        duration: isError ? Duration(seconds: 2) : Duration(seconds: 1),
+        duration: isError ? Duration(seconds: 3) : Duration(seconds: 2),
       ),
     );
   }
