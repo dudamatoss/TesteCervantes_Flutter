@@ -99,12 +99,12 @@ class DatabaseHelper {
     );
   }
    //Deleta um cadastro já existente
-  Future<int> deleteCadastro(int idCadastro) async {
+  Future<int> cadastroDelete(int numero) async {
     Database db = await _instance.database;
     return await db.delete(
       'cadastro',
-      where: 'id = ?',
-      whereArgs: [idCadastro],
+      where: 'numero = ?',
+      whereArgs: [numero],
     );
   }
 

@@ -10,8 +10,8 @@ class Input extends StatefulWidget {
   _InputState createState() => _InputState();
 }
 class _InputState extends State<Input> {
-  final _textController = TextEditingController();
-  final _numController = TextEditingController();
+  final textController = TextEditingController();
+  final numController = TextEditingController();
   final databHelper = DatabaseHelper();
   List<Map<String, dynamic>> cadastros = [];
   @override
@@ -26,40 +26,79 @@ class _InputState extends State<Input> {
     });
   }
   void cadstrar() async {
-    String texto = _textController.text;
-    int? numero = _verificaNum(_numController.text);
+    String texto = textController.text;
+    int? numero = _verificaNum(numController.text);
 
     if (texto.isNotEmpty && numero != null && numero > 0) {
       try {
         await databHelper.cadastroInsert({'texto': texto, 'numero': numero});
         //limpando is inputs
-        _textController.clear();
-        _numController.clear();
+        textController.clear();
+        numController.clear();
         carregarCadastros();
-        _showMessage(context, "Cadastro realizado com sucesso!");
+        ExibirMsg(context, "Cadastro realizado com sucesso!");
       } catch (e) {
         if (e is DatabaseException && e.isUniqueConstraintError()) {
-          _showMessage(
+          ExibirMsg(
             context,
             'Este número já está cadastrado',
             isError: true,
           );
         } else {
-          _showMessage(
-            context,
-            'Erro ao registrar ${e.toString()}',
+          ExibirMsg(context,'Erro ao registrar ${e.toString()}',
             isError: true,
           );
         }
       }
     } else {
-      _showMessage(
+      ExibirMsg(
         context,
         "Algum campo esta incorreto, tente novamente!",
         isError: true,
       );
     }
   }
+  //metodo de deletar pou numero
+  void deletar(int index) async{
+    final confirm = await showDialog<bool>(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text('Confirmar exclusão'),
+      content: Text('Tem certeza que deseja excluir este cadastro?'),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(false),
+          child: Text('Cancelar'),
+        ),
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(true),
+          child: Text(
+            'Excluir',
+            style: TextStyle(color: Colors.red),
+          ),
+        ),
+      ],
+    ),
+  );
+
+if (confirm == true) {
+    final numero = cadastros[index]['numero']; 
+
+    // Chama a função do banco deletar
+    final resultado = await databHelper.cadastroDelete(numero);
+    ExibirMsg(context, "Cadastro realizado com sucesso");
+    carregarCadastros();
+
+    if (resultado > 0) {
+      carregarCadastros();
+    } else {
+      ExibirMsg(context, "Erro ao excluir");
+    }
+  }
+}
+
+
+
   //verifica se o valor do campo é um número válido
   int? _verificaNum(String numInput) {
     if (numInput.isEmpty) {
@@ -72,7 +111,7 @@ class _InputState extends State<Input> {
     return verificaNum;
   }
   //exibe uma mensagem na tela quando os dados são carregados
-  void _showMessage(
+  void ExibirMsg(
     BuildContext context,
     String message, {
     bool isError = false,
@@ -83,7 +122,7 @@ class _InputState extends State<Input> {
         backgroundColor:
             isError
                 ? const Color.fromARGB(121, 0, 0, 0)
-                : const Color.fromARGB(183, 255, 255, 255),
+                : const Color.fromARGB(183, 4, 94, 10),
         duration: isError ? Duration(seconds: 2) : Duration(seconds: 1),
       ),
     );
@@ -111,12 +150,12 @@ Widget build(BuildContext context) {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     CustomTextField(
-                      controller: _textController,
+                      controller: textController,
                       label: 'Insira um Texto',
                     ),
                     SizedBox(height: 24),
                     CustomTextField(
-                      controller: _numController,
+                      controller: numController,
                       label: 'Insira Números',
                       keyboardType: TextInputType.number,
                     ),
@@ -155,6 +194,9 @@ Widget build(BuildContext context) {
                         'Número: ${cadastro['numero']}',
                         style: StyleTable.subtitleStyle, 
                       ),
+                      trailing: IconButton(
+                        onPressed: ()=> deletar(index),
+                         icon: Icon(Icons.delete_sharp, color: const Color.fromARGB(163, 255, 255, 255),)),
                     ),
                   );
                 },
