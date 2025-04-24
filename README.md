@@ -1,16 +1,29 @@
-# cadartroapp
+# 📋 Teste Cervantes - Tela de Cadastro
 
-A new Flutter project.
+Este é um projeto Flutter simples desenvolvido como parte de um teste técnico. A aplicação permite o **cadastro, edição e exclusão de registros** contendo um texto e um número.
 
-## Getting Started
+## 🚀 Funcionalidades
 
-This project is a starting point for a Flutter application.
+- ✅ Cadastro de novos registros (texto e número)
+- ✏️ Edição de registros com preenchimento automático dos campos
+- ❌ Exclusão de registros com confirmação
+- 🔄 Atualização em tempo real da lista de cadastros
+- ⚠️ Mensagens de erro e sucesso para orientar o usuário
 
-A few resources to get you started if this is your first Flutter project:
+### Pré-requisitos
+- Flutter SDK instalado ([instruções oficiais](https://docs.flutter.dev/get-started/install))
+- Dart SDK
+- Editor de código (VS Code, Android Studio, etc.)
+- Dependência nativa do SQLite (automática no Flutter Desktop)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+### Passos para execução:
+
+```bash
+
+# Instale as dependências
+flutter pub get
+
+# Execute o app (no Windows Desktop, por exemplo)
+flutter run -d windows
