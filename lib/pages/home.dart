@@ -181,16 +181,16 @@ class _HomeState extends State<Home> {
                       Column(
                         children: [
                           StyleButton(
-                            onPressed: editar, // Chama o método de edição
-                            text: 'Confirmar Edição',
+                            onPressed: cadstrar, // Chama o método de cadastro
+                            text: 'Cadastrar',
                             type: ButtonType.primary,
                           ),
                         ],
                       ),
-                      SizedBox(height: 23),
+                      SizedBox(height: 35),
                       StyleButton(
-                        onPressed: cadstrar, // Chama o método de cadastro
-                        text: 'Cadastrar',
+                        onPressed: editar , // Chama o método de editar
+                        text: 'Salvar Edição',
                         type: ButtonType.primary,
                       ),
                     ],
